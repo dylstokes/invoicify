@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.ally.invoicify.models.InvoiceLineItem;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="billing_records")
@@ -19,10 +20,11 @@ public abstract class BillingRecord {
 	@GeneratedValue
 	private Integer id;
 
-	@Column(name="createdOn")
+	@Column(name="createdOn", nullable=false)
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date createdOn;
 	
-	@Column(name="description")
+	@Column(name="description", nullable=true)
 	private String description;
 	
 	@OneToOne(mappedBy="billingRecord")
@@ -30,6 +32,11 @@ public abstract class BillingRecord {
 	
 	@ManyToOne
 	private Company company;
+	
+	public BillingRecord(Date createdOn, String description) {
+		this.createdOn = createdOn;
+		this.description = description;
+	}
 	
 	public BillingRecord(Date createdOn, String description, InvoiceLineItem inv, Company company) {
 		this.createdOn = createdOn;
