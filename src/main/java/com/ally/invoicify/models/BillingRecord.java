@@ -75,4 +75,7 @@ public abstract class BillingRecord {
 		return id;
 	}
 	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 }
