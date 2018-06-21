@@ -31,8 +31,7 @@ public class FlatFeeBillingRecordControllerTests {
 	
 	@Test
 	public void testCreate() {
-		FlatFeeBillingRecord record = new FlatFeeBillingRecord();
-		flatFeeBillingController.create();
+		
 	}
 
 }

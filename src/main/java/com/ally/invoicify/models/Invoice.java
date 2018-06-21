@@ -33,6 +33,12 @@ public class Invoice {
 	@OneToMany(mappedBy="invoice", cascade=CascadeType.ALL)
 	private List<InvoiceLineItem> lineItems;
 	
+	public Invoice(Date createdOn, String description, Company company) {
+		this.createdOn = createdOn;
+		this.company = company;
+		this.invoiceDescription = description;
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -31,6 +31,13 @@ public abstract class BillingRecord {
 	@ManyToOne
 	private Company company;
 	
+	public BillingRecord(Date createdOn, String description, InvoiceLineItem inv, Company company) {
+		this.createdOn = createdOn;
+		this.description = description;
+		this.lineItem = inv;
+		this.company = company;
+	}
+	
 	public abstract Double getTotal();
 	
 	public Date getCreatedOn() {
