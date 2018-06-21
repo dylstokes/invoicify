@@ -56,7 +56,6 @@ public abstract class BillingRecord {
 	public void setLineItem(InvoiceLineItem lineItem) {
 		this.lineItem = lineItem;
 	}
-
 	public Company getCompany() {
 		return company;
 	}
