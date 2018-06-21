@@ -1,5 +1,6 @@
 package com.ally.invoicify.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,8 @@ import com.ally.invoicify.services.FlatFeeBillingRecordServiceImpl;
 @RequestMapping("/api/billing-record/flat-fee")
 public final class FlatFeeBillingRecordController {
 	
-	private FlatFeeBillingRecordServiceImpl service = new FlatFeeBillingRecordServiceImpl();
+	@Autowired
+	private FlatFeeBillingRecordServiceImpl service;
 	
 	@PostMapping()
 	public FlatFeeBillingRecord create(@RequestBody FlatFeeBillingRecord record) {

@@ -1,14 +1,23 @@
 package com.ally.invoicify.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="companies")
 public class Company {
-	private int id;
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
+	@Column(name="company")
 	private String name;
 //	private List<Invoice> invoices;
+	
+	public Company() {}
 	
 	public int getId() {
 		return id;

@@ -19,7 +19,6 @@ public class InvoiceLineItem {
 	@GeneratedValue
 	private int id;
 	
-	@Column(name="billingRecord")
 	@OneToOne
 	private BillingRecord billingRecord;
 	
