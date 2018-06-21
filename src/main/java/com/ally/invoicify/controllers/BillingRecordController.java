@@ -25,8 +25,4 @@ public class BillingRecordController {
 	public BillingRecord get(@PathVariable int id) {
 		return service.get(id);
 	}
-	
-	public Integer[] findByIdIn(long[] recordIds) {
-		return null;
-	}
 }
