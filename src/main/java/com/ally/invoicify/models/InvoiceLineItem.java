@@ -28,6 +28,10 @@ public class InvoiceLineItem {
 	@ManyToOne
 	private Invoice invoice;
 	
+	public InvoiceLineItem() {
+		
+	}
+	
 	public InvoiceLineItem(Date createdOn, Invoice inv) {
 		this.createdOn = createdOn;
 		this.invoice = inv;
