@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ally.invoicify.models.BillingRecord;
@@ -24,6 +25,7 @@ import com.ally.invoicify.repositories.InvoiceRepository;
 
 @RestController
 @RequestMapping("/api/invoice")
+@ResponseBody
 public class InvoiceController {
 	
 	@Autowired
@@ -50,7 +52,6 @@ public class InvoiceController {
 	}
 	
 	@PostMapping("{clientId}")
-
 	public Invoice createInvoice(@RequestBody InvoiceView invoiceView, @PathVariable int clientId) {
 
 		List<BillingRecord> records = recordRepo.findAll(Arrays.asList(invoiceView.getRecordIds()));

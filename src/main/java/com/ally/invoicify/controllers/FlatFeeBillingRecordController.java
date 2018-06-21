@@ -11,6 +11,7 @@ import com.ally.invoicify.models.FlatFeeBillingRecord;
 import com.ally.invoicify.services.FlatFeeBillingRecordServiceImpl;
 
 @RestController
+@ResponseBody
 @RequestMapping("/api/billing-record/flat-fee")
 public final class FlatFeeBillingRecordController {
 	
