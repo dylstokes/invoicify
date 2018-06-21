@@ -2,32 +2,37 @@ package com.ally.invoicify.models;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.ally.invoicify.models.InvoiceLineItem;
+
 @Entity
-@Table(name="billingRecords")
+@Table(name="billing_records")
 public abstract class BillingRecord {
-	private int id;
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	@Column(name="createdOn")
 	private Date createdOn;
+	
+	@Column(name="description")
 	private String description;
-//	@OneToOne(mappedBy="billingRecord")
-//	private InvoiceLineItem lineItem
+	
+	@OneToOne(mappedBy="billingRecord")
+	private InvoiceLineItem lineItem;
 	
 	@ManyToOne
 	private Company company;
 	
-	abstract public double getTotal();
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	public abstract Double getTotal();
+	
 	public Date getCreatedOn() {
 		return createdOn;
 	}
@@ -44,6 +49,13 @@ public abstract class BillingRecord {
 		this.description = description;
 	}
 
+	public InvoiceLineItem getLineItem() {
+		return lineItem;
+	}
+
+	public void setLineItem(InvoiceLineItem lineItem) {
+		this.lineItem = lineItem;
+	}
 	public Company getCompany() {
 		return company;
 	}
@@ -51,4 +63,9 @@ public abstract class BillingRecord {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+	
 }
