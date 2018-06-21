@@ -12,7 +12,7 @@ public final class FlatFeeBillingRecordController {
 
 	@PostMapping()
 	public FlatFeeBillingRecord create() {
-		FlatFeeBillingRecord flatFeeBillingRecord = new FlatFeeBillingRecord(0);
+		FlatFeeBillingRecord flatFeeBillingRecord = new FlatFeeBillingRecord(0.0);
 		return flatFeeBillingRecord;
 	}
 }

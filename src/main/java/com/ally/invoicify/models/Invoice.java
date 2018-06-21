@@ -18,7 +18,7 @@ public class Invoice {
 	
 	@Id
     @GeneratedValue
-	private int id;
+	private Integer id;
 	
 	@ManyToOne
 	private Company company;
@@ -36,13 +36,13 @@ public class Invoice {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getCompany() {
+	public Company getCompany() {
 		return company;
 	}
-	public void setCompany(String company) {
+	public void setCompany(Company company) {
 		this.company = company;
 	}
 	public Date getCreatedOn() {
@@ -63,5 +63,4 @@ public class Invoice {
 	public void setLineItems(List<InvoiceLineItem> lineItems) {
 		this.lineItems = lineItems;
 	}
-
 }

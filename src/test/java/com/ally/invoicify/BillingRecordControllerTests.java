@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.ally.invoicify.controllers.BillingRecordController;
 import com.ally.invoicify.models.BillingRecord;
+import com.ally.invoicify.models.RateBasedBillingRecord;
 import com.ally.invoicify.repositories.BillingRecordRepository;
 import com.ally.invoicify.services.BillingRecordServiceImpl;
 import com.ally.invoicify.services.RateBasedBillingRecordServiceImpl;
@@ -45,7 +46,7 @@ public class BillingRecordControllerTests {
 	}
 	
 	@Test
-	public void GetTest() {
+	public void GetTest() throws Exception {
 		RateBasedBillingRecord record = new RateBasedBillingRecord(10.0, 10.0);
 		BillingRecord createdRecord = (BillingRecord)rbService.create(record);
 		assertEquals(mvc.perform(
@@ -58,7 +59,6 @@ public class BillingRecordControllerTests {
 	
 	@Test
 	public void GetAllTest() {
-		mvc.
-		List<BillingRecord> records = 
+		 
 	}
 }

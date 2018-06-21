@@ -6,18 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ally.invoicify.models.RatedBasedBillingRecord;
+import com.ally.invoicify.models.RateBasedBillingRecord;
+import com.ally.invoicify.repositories.RateBasedBillingRecordRepository;
 
 @RestController
 @RequestMapping("/api/billing-record/rated-based")
-public class RatedBasedBillingControllerTests {
+public class RateBasedBillingControllerTests {
 	
 	@Autowired
-	private RatedBasedBillingRecordRepository repo;
+	private RateBasedBillingRecordRepository repo;
 	
 	@PostMapping("")
-	public RatedBasedBillingRecord create(
-			@RequestBody RatedBasedBillingRecord record) {
+	public RateBasedBillingRecord create(
+			@RequestBody RateBasedBillingRecord record) {
 		return repo.save(record);
 	}
 }

@@ -7,13 +7,13 @@ import javax.persistence.Table;
 @Table(name="flatFeeBillingRecords")
 public class FlatFeeBillingRecord extends BillingRecord {
 	
-	private double amount;
+	private Double amount;
 	
 	public FlatFeeBillingRecord() {
 		
 	}
 	
-	public FlatFeeBillingRecord(double amount) {
+	public FlatFeeBillingRecord(Double amount) {
 		this.amount = amount; 
 	}
 
@@ -21,12 +21,12 @@ public class FlatFeeBillingRecord extends BillingRecord {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
 	@Override
-	public double getTotal() {
+	public Double getTotal() {
 		// TODO Auto-generated method stub
 		return amount;
 	}

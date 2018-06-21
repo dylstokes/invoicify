@@ -7,20 +7,20 @@ import javax.persistence.Table;
 @Table(name="rateBasedBillingRecords")
 public class RateBasedBillingRecord extends BillingRecord {
 
-	private double rate;
-	private double quantity;
+	private Double rate;
+	private Double quantity;
 	
 	public RateBasedBillingRecord() {
 		
 	}
 	
-	public RateBasedBillingRecord(double rate, double quantity) {
+	public RateBasedBillingRecord(Double rate, Double quantity) {
 		this.rate = rate; 
 		this.quantity = quantity;
 	}
 	
 	@Override
-	public double getTotal() {
+	public Double getTotal() {
 		// TODO Auto-generated method stub
 		return rate*quantity;
 	}
