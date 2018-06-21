@@ -18,7 +18,7 @@ public abstract class BillingRecord {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
+
 	@Column(name="createdOn")
 	private Date createdOn;
 	
@@ -32,5 +32,41 @@ public abstract class BillingRecord {
 	private Company company;
 	
 	public abstract Double getTotal();
+	
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public InvoiceLineItem getLineItem() {
+		return lineItem;
+	}
+
+	public void setLineItem(InvoiceLineItem lineItem) {
+		this.lineItem = lineItem;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public Integer getId() {
+		return id;
+	}
 	
 }
