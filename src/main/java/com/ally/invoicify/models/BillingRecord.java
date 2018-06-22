@@ -31,11 +31,15 @@ public abstract class BillingRecord {
 	@ManyToOne
 	private Company company;
 	
-	public BillingRecord(Date createdOn, String description, InvoiceLineItem inv, Company company) {
+	@Column(name="total")
+	private double total;
+	
+	public BillingRecord(Date createdOn, String description, InvoiceLineItem inv, Company company, double total) {
 		this.createdOn = createdOn;
 		this.description = description;
 		this.lineItem = inv;
 		this.company = company;
+		this.total = total;
 	}
 	
 	public abstract Double getTotal();
