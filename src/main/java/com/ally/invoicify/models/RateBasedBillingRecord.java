@@ -12,6 +12,10 @@ public class RateBasedBillingRecord extends BillingRecord {
 	private Double rate;
 	private Double quantity;
 	
+	public RateBasedBillingRecord() {
+		super();
+	};
+	
 	public RateBasedBillingRecord(Double rate, Double quantity, Date createdOn, String description, InvoiceLineItem inv, Company company) {
 		super(createdOn, description, inv, company);
 		this.rate = rate; 
