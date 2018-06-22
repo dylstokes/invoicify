@@ -10,10 +10,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.ally.invoicify.models.InvoiceLineItem;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
 @Table(name="billing_records")
+@JsonInclude(Include.NON_NULL)
 public abstract class BillingRecord {
 	@Id
 	@GeneratedValue
@@ -30,11 +32,13 @@ public abstract class BillingRecord {
 	
 	@ManyToOne
 	private Company company;
+
+  @Column(name="total")
+	private Double total;
 	
-	@Column(name="total")
-	private double total;
-	
-	public BillingRecord(Date createdOn, String description, InvoiceLineItem inv, Company company, double total) {
+	public BillingRecord() {};
+
+	public BillingRecord(Date createdOn, String description, InvoiceLineItem inv, Company company, Double total) {
 		this.createdOn = createdOn;
 		this.description = description;
 		this.lineItem = inv;
