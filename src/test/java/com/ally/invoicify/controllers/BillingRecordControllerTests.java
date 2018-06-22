@@ -56,6 +56,8 @@ public class BillingRecordControllerTests {
 	
 	@Before
 	public void setup() {
+		RateBasedBillingRecord record = new RateBasedBillingRecord();
+		when(service.get(1)).thenReturn(record);
 		MockitoAnnotations.initMocks(this);
 	    ReflectionTestUtils.setField(controller, "service", service);
 		mvc = MockMvcBuilders.standaloneSetup(controller).build();
@@ -68,17 +70,17 @@ public class BillingRecordControllerTests {
 		Date date = new java.sql.Date(new SimpleDateFormat("MM-dd-yyyy").parse("02-04-2015").getTime());
 		Company company = new Company();
 		Integer recordId = 1;
-		RateBasedBillingRecord record = new RateBasedBillingRecord(
+//		RateBasedBillingRecord record = new RateBasedBillingRecord(
 //						10.0, 
 //						10.0, 
 //						date, 
 //						"A new invoice", 
 //						new InvoiceLineItem(date, new Invoice(date, "A new invoice", company)), 
 //						company
-						);
+//						);
 		//when(rbService.create(record)).thenReturn(record);
 		//when(rbRepo.save(record)).thenReturn(record);
-		when(service.get(recordId)).thenReturn(record);
+//		when(service.get(recordId)).thenReturn(record);
 		//when(repo.findOne(recordId)).thenReturn((BillingRecord)record);
 		// BillingRecord createdRecord = (BillingRecord)rbService.create(record);
 		mvc.perform(
