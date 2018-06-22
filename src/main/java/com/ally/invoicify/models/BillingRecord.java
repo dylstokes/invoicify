@@ -31,6 +31,9 @@ public abstract class BillingRecord {
 	@ManyToOne
 	private Company company;
 	
+	@Column(name="total")
+	private double total;
+	
 	public BillingRecord(Date createdOn, String description, InvoiceLineItem inv, Company company) {
 		this.createdOn = createdOn;
 		this.description = description;
