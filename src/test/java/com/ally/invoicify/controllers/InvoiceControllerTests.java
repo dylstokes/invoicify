@@ -19,22 +19,22 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.ally.invoicify.models.Company;
-import com.ally.invoicify.repositories.CompanyRepository;
-import com.ally.invoicify.services.CompanyServiceImpl;
+import com.ally.invoicify.models.Invoice;
+import com.ally.invoicify.repositories.InvoiceRepository;
+import com.ally.invoicify.services.InvoiceServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class CompanyControllerTests {
+public class InvoiceControllerTests {
 	
 	@InjectMocks
-	private CompanyServiceImpl service;
+	private InvoiceServiceImpl service;
 	
 	@InjectMocks
-	private CompanyController controller;
+	private InvoiceController controller;
 	
 	@Mock
-	private CompanyRepository repo;
+	private InvoiceRepository repo;
 	
 	private MockMvc mvc;
 	
@@ -46,37 +46,37 @@ public class CompanyControllerTests {
 	@Test
 	public void GetTest() throws Exception {
 		// Setup variables to compare to response body
-		Company company = new Company();
+		Invoice invoice = new Invoice();
 		Integer recordId = 1;
 		
 		// Mock functionality involved in this test case, then initialize mocks
-		when(service.get(recordId)).thenReturn(company);
+		when(service.get(recordId)).thenReturn(invoice);
 		MockitoAnnotations.initMocks(this);
 		ReflectionTestUtils.setField(controller, "service", service);
 		mvc = MockMvcBuilders.standaloneSetup(controller).build();
 		
 		// Perform request against Mock server and assert success
 		mvc.perform(
-			get(String.format("/api/company/%d", recordId)))
+			get(String.format("/api/invoice/%d", recordId)))
 			.andExpect(status().isOk());
 	}
 	
 	@Test
 	public void GetAllTest() throws Exception {
 		// Setup variables to compare to response body
-		List<Company> companies = new ArrayList<>();
-		companies.add(new Company());
-		companies.add(new Company());
+		List<Invoice> invoices = new ArrayList<>();
+		invoices.add(new Invoice());
+		invoices.add(new Invoice());
 		
 		// Mock functionality involved in this test case, then initialize mocks
-		when(service.getAll()).thenReturn(companies);
+		when(service.getAll()).thenReturn(invoices);
 		MockitoAnnotations.initMocks(this);
 		ReflectionTestUtils.setField(controller, "service", service);
 		mvc = MockMvcBuilders.standaloneSetup(controller).build();
 		
 		// Perform request against Mock server and assert success
 		mvc.perform(
-			get("/api/company"))
+			get("/api/invoice"))
 			.andExpect(status().isOk());
 	}
 }
