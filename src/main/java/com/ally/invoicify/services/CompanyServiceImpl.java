@@ -1,8 +1,11 @@
 package com.ally.invoicify.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ally.invoicify.models.BillingRecord;
 import com.ally.invoicify.models.Company;
 import com.ally.invoicify.repositories.CompanyRepository;
 
@@ -21,5 +24,20 @@ public class CompanyServiceImpl {
 	
 	public Company get(Integer id) {
 		return repo.findOne(id);
+	}
+	
+	public List<Company> getAll() {
+		return repo.findAll();
+	}
+	
+	public boolean delete(Integer id) {
+		Company record = repo.findOne(id);
+		repo.delete(id);
+		return record != null;
+	}
+	
+	public Company update(Company company, Integer id) {
+		company.setId(id);
+		return company;
 	}
 }
