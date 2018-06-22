@@ -33,7 +33,7 @@ public abstract class BillingRecord {
 	@ManyToOne
 	private Company company;
 
-  @Column(name="total")
+	@Column(name="total")
 	private Double total;
 	
 	public BillingRecord() {};
