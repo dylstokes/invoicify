@@ -10,8 +10,8 @@ import com.ally.invoicify.models.RateBasedBillingRecord;
 import com.ally.invoicify.services.RateBasedBillingRecordServiceImpl;
 
 @RestController
-@RequestMapping("/api/billing-record/rated-based")
-public class RateBasedBillingController {
+@RequestMapping("/api/billing-record/rate-based")
+public class RateBasedBillingRecordController {
 	
 	@Autowired
 	private RateBasedBillingRecordServiceImpl service; 
