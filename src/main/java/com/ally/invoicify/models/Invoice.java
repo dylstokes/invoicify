@@ -20,6 +20,7 @@ public class Invoice {
     @GeneratedValue
 	private Integer id;
 	
+	@Column(name="company")
 	@ManyToOne
 	private Company company;
 	
