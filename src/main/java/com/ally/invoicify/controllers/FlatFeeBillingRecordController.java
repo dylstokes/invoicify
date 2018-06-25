@@ -16,7 +16,7 @@ public final class FlatFeeBillingRecordController {
 	@Autowired
 	private FlatFeeBillingRecordServiceImpl service;
 	
-	@PostMapping()
+	@PostMapping("{clientId}")
 	public FlatFeeBillingRecord create(@RequestBody FlatFeeBillingRecord record) {
 		return service.create(record);
 	}
