@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ally.invoicify.models.FlatFeeBillingRecord;
+//import com.ally.invoicify.models.RateBasedBillingRecord;
 import com.ally.invoicify.services.FlatFeeBillingRecordServiceImpl;
 
 @RestController
@@ -16,8 +17,9 @@ public final class FlatFeeBillingRecordController {
 	@Autowired
 	private FlatFeeBillingRecordServiceImpl service;
 	
-	@PostMapping("{clientId}")
-	public FlatFeeBillingRecord create(@RequestBody FlatFeeBillingRecord record) {
+	@PostMapping("")
+	public FlatFeeBillingRecord create(
+			@RequestBody FlatFeeBillingRecord record) {
 		return service.create(record);
 	}
 }
