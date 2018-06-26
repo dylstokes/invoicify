@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+
 @Entity
 @Table(name = "invoice_line_item")
 public class InvoiceLineItem {
@@ -28,6 +30,17 @@ public class InvoiceLineItem {
 	@ManyToOne
 	private Invoice invoice;
 	
+	@Column(name="createBy")
+	private User createdBy;
+	
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+
 	public InvoiceLineItem() {
 		
 	}
