@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+
 @Entity
 @Table(name = "invoice")
 public class Invoice {
@@ -34,6 +36,17 @@ public class Invoice {
 	@OneToMany(mappedBy="invoice", cascade=CascadeType.ALL)
 	private List<InvoiceLineItem> lineItems;
 	
+	@Column(name="createBy")
+	private User createdBy;
+	
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+
 	public Invoice() {
 		
 	}
