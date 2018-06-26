@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
@@ -36,15 +37,15 @@ public class Invoice {
 	@OneToMany(mappedBy="invoice", cascade=CascadeType.ALL)
 	private List<InvoiceLineItem> lineItems;
 	
-	@Column(name="createBy")
-	private User createdBy;
+	@OneToOne()
+	private UserLogin createdBy;
 	
-	public User getCreatedBy() {
+	public UserLogin getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(User createdBy) {
-		this.createdBy = createdBy;
+	public void setCreatedBy(User user) {
+		this.createdBy = new UserLogin(user.getName(),user.getPassword());
 	}
 
 	public Invoice() {
