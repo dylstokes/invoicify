@@ -1,9 +1,13 @@
 package com.ally.invoicify.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +19,9 @@ public class Company {
 	
 	@Column(name="company")
 	private String name;
-//	private List<Invoice> invoices;
+	
+	@OneToMany(mappedBy="company", cascade=CascadeType.ALL)
+	private List<Invoice> invoices;
 	
 	public Company() {}
 	
