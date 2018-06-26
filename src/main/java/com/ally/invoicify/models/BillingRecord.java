@@ -29,7 +29,7 @@ public abstract class BillingRecord {
 	@Column(name="description")
 	private String description;
 	
-	@Column(name="createdBy")
+	@OneToOne()
 	private UserLogin createdBy;
 	
 	@OneToOne(mappedBy="billingRecord")
