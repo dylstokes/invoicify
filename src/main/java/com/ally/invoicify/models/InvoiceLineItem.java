@@ -30,16 +30,16 @@ public class InvoiceLineItem {
 	@ManyToOne
 	private Invoice invoice;
 	
-	@Column(name="createBy")
-	private User createdBy;
+//	@Column(name="createBy")
+//	private User createdBy;
 	
-	public User getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(User createdBy) {
-		this.createdBy = createdBy;
-	}
+//	public User getCreatedBy() {
+//		return createdBy;
+//	}
+//
+//	public void setCreatedBy(User createdBy) {
+//		this.createdBy = createdBy;
+//	}
 
 	public InvoiceLineItem() {
 		
