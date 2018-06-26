@@ -10,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 
 @Entity
 @Table(name = "invoice")
@@ -30,10 +33,21 @@ public class Invoice {
 	@Column(name="invoiceDescription")
 	private String invoiceDescription;
 	
-	@Column(name="lineItems")
+//	@Column(name="lineItems")
 	@OneToMany(mappedBy="invoice", cascade=CascadeType.ALL)
 	private List<InvoiceLineItem> lineItems;
 	
+	@OneToOne()
+	private UserLogin createdBy;
+	
+	public UserLogin getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User user) {
+		this.createdBy = new UserLogin(user.getName(),user.getPassword());
+	}
+
 	public Invoice() {
 		
 	}

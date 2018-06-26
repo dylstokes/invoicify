@@ -7,8 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "userLogins")
+public class UserLogin {
 	
 	@Id
     @GeneratedValue
@@ -28,11 +28,11 @@ public class User {
 		this.id = id;
 	}
 
-	public User() {
+	public UserLogin() {
 		
 	}
 	
-	public User(String username, String password) {
+	public UserLogin(String username, String password) {
 		this.userName = username;
 		this.password = password;
 	}

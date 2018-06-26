@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -26,6 +28,9 @@ public abstract class BillingRecord {
 	
 	@Column(name="description")
 	private String description;
+	
+	@OneToOne()
+	private UserLogin createdBy;
 	
 	@OneToOne(mappedBy="billingRecord")
 	private InvoiceLineItem lineItem;
@@ -46,6 +51,18 @@ public abstract class BillingRecord {
 		this.total = total;
 	}
 	
+	public UserLogin getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User user) {
+		this.createdBy = new UserLogin(user.getName(),user.getPassword());
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
 	public abstract Double getTotal();
 	
 	public Date getCreatedOn() {

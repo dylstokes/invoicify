@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.ally.invoicify.models.BillingRecord;
+import com.ally.invoicify.models.Company;
 import com.ally.invoicify.models.Invoice;
 import com.ally.invoicify.models.InvoiceLineItem;
 import com.ally.invoicify.models.InvoiceView;
@@ -37,18 +40,16 @@ public class InvoiceServiceImpl {
 		this.invoiceRepo = invoiceRepo;
 	}
 	
-	@GetMapping("")
 	public List<Invoice> getAll() {
 		return invoiceRepo.findAll();
 	}
 	
-	@GetMapping("{id}")
-	public Invoice get(@PathVariable int id) {
+	public Invoice get(int id) {
 		return invoiceRepo.findOne(id);
 	}
 	
-	@PostMapping("{clientId}")
-	public Invoice createInvoice(@RequestBody InvoiceView invoiceView, @PathVariable int clientId) {
+
+	public Invoice createInvoice(InvoiceView invoiceView,int clientId) {
 
 		List<BillingRecord> records = recordRepo.findAll(Arrays.asList(invoiceView.getRecordIds()));
 		long nowish = Calendar.getInstance().getTimeInMillis();
@@ -68,6 +69,11 @@ public class InvoiceServiceImpl {
 		invoice.setLineItems(items);
 		invoice.setCreatedOn(now);
 		invoice.setCompany(companyRepo.findOne(clientId));
+		
+		// set createdBy to current user
+		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) auth.getPrincipal();
+		invoice.setCreatedBy(user);
 
 		return invoiceRepo.save(invoice);
 	}
