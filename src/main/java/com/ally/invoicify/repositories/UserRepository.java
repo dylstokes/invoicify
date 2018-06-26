@@ -1,8 +1,9 @@
 package com.ally.invoicify.repositories;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+import com.ally.invoicify.models.UserLogin;
+
+public interface UserRepository extends JpaRepository<UserLogin, Integer> {
 
 }
