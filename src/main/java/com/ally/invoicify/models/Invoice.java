@@ -32,7 +32,7 @@ public class Invoice {
 	@Column(name="invoiceDescription")
 	private String invoiceDescription;
 	
-	@Column(name="lineItems")
+//	@Column(name="lineItems")
 	@OneToMany(mappedBy="invoice", cascade=CascadeType.ALL)
 	private List<InvoiceLineItem> lineItems;
 	
