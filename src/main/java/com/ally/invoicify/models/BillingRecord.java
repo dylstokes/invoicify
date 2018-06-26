@@ -29,6 +29,9 @@ public abstract class BillingRecord {
 	@Column(name="description")
 	private String description;
 	
+	@Column(name="createdBy")
+	private UserLogin createdBy;
+	
 	@OneToOne(mappedBy="billingRecord")
 	private InvoiceLineItem lineItem;
 	
@@ -37,9 +40,6 @@ public abstract class BillingRecord {
 
 	@Column(name="total")
 	private Double total;
-	
-	@Column(name="createBy")
-	private User createdBy;
 	
 	public BillingRecord() {};
 
@@ -51,12 +51,12 @@ public abstract class BillingRecord {
 		this.total = total;
 	}
 	
-	public User getCreatedBy() {
+	public UserLogin getCreatedBy() {
 		return createdBy;
 	}
 
 	public void setCreatedBy(User user) {
-		this.createdBy = user;
+		this.createdBy = new UserLogin(user.getName(),user.getPassword());
 	}
 
 	public void setTotal(Double total) {
