@@ -40,8 +40,10 @@ public final class FlatFeeBillingRecordController {
 		
 		org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) auth.getPrincipal();
+		
 		Company client = companyService.get(clientId);
 		record.setCompany(client);
+		
 		record.setCreatedBy(user);
 		
 		return billingService.create(record);
