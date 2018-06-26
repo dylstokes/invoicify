@@ -3,21 +3,23 @@ package com.ally.invoicify.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "users")
 public class User {
 	
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name="username")
+	@Column(nullable = false, unique = true)
 	private String userName;
 	
-	@Column(name="password")
+//	@Column(name="password")
 	private String password;
 	
 	public Integer getId() {
