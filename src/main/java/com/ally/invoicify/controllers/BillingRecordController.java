@@ -28,7 +28,7 @@ public class BillingRecordController {
 	public List<BillingRecord> getAll() {
 		return service.getAll();
 	}
-	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("{id}")
 	public BillingRecord get(@PathVariable Integer id) {
 		return service.get(id);

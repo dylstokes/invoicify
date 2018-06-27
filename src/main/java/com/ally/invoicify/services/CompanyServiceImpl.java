@@ -17,9 +17,8 @@ public class CompanyServiceImpl {
 		this.repo = repo;
 	}
 	
-	public Company create(String company) {
-		Company c = new Company(company);
-		return repo.save(c);
+	public Company create(Company company) {
+		return repo.save(company);
 	}
 	
 	public Company get(Integer id) {

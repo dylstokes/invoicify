@@ -35,7 +35,7 @@ public class CompanyController {
 	}
 	
 	@PostMapping("")
-	public Company create(@RequestBody String company) {
+	public Company create(@RequestBody Company company) {
 		return service.create(company);
 	}
 
