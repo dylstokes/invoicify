@@ -10,6 +10,7 @@ import com.ally.invoicify.models.Company;
 import com.ally.invoicify.models.Invoice;
 import com.ally.invoicify.models.InvoiceLineItem;
 import com.ally.invoicify.models.RateBasedBillingRecord;
+import com.ally.invoicify.models.User;
 import com.ally.invoicify.repositories.CompanyRepository;
 import com.ally.invoicify.repositories.InvoiceRepository;
 import com.ally.invoicify.repositories.RateBasedBillingRecordRepository;
@@ -24,8 +25,14 @@ public class SeedData {
 		Company c = new Company("Ally");
 		companyRepo.save(c);
 		Invoice i = new Invoice(new Date(2010,3,4),"",c);
+		User u = new User("megan","megan");
 		//InvoiceLineItem ili = new InvoiceLineItem(new Date(2010,3,4),i);
-		RateBasedBillingRecord r = new RateBasedBillingRecord(2.0,2.0,new Date(2010,3,4),"",c);
+//		RateBasedBillingRecord r = new RateBasedBillingRecord(2.0,2.0,new Date(2010,3,4),"",c);
+		RateBasedBillingRecord r = new RateBasedBillingRecord();
+		r.setRate(.5);
+		r.setQuantity(10);
+		r.setDescription("Test rate based billing record descrip.");
+		r.setClient(c);
 		
 		InvoiceLineItem ili = new InvoiceLineItem(new Date(2010,3,4),i);
 		invoiceRepo.save(i);

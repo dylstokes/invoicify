@@ -1,34 +1,41 @@
 package com.ally.invoicify.models;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
-@Table(name="rateBasedBillingRecords")
-@JsonInclude(Include.NON_NULL)
 public class RateBasedBillingRecord extends BillingRecord {
 
-	private Double rate;
-	private Double quantity;
+	private double rate;
 	
-	public RateBasedBillingRecord() {};
+	private double quantity;
 	
-	public RateBasedBillingRecord(Double rate, Double quantity, Date createdOn, String description, Company company) {
-		super(createdOn, description, company);
-		this.rate = rate; 
+	public RateBasedBillingRecord() {}
+	
+	public RateBasedBillingRecord(double rate, double quantity, String description, Company client, User createdBy) {
+		super(description, client, createdBy);
+		this.rate = rate;
 		this.quantity = quantity;
 	}
 	
 	@Override
-	public Double getTotal() {
-		if(rate != null && quantity != null) {
-			return rate * quantity;
-		}
-		return null;
+	public double getTotal() {
+		return rate * quantity;
 	}
+
+	public double getRate() {
+		return rate;
+	}
+
+	public void setRate(double rate) {
+		this.rate = rate;
+	}
+
+	public double getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
+	}
+
 }
