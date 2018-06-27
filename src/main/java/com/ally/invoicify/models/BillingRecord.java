@@ -1,71 +1,61 @@
 package com.ally.invoicify.models;
 
 import java.sql.Date;
+import java.util.Calendar;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name="billing_records")
-@JsonInclude(Include.NON_NULL)
 public abstract class BillingRecord {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
 
-	@Column(name="createdOn")
-	private Date createdOn;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+
+	@ManyToOne
+	private User createdBy;
 	
-	@Column(name="description")
 	private String description;
 	
-	@OneToOne()
-	private UserLogin createdBy;
-	
+	@JsonManagedReference
 	@OneToOne(mappedBy="billingRecord")
 	private InvoiceLineItem lineItem;
 	
 	@ManyToOne
-	private Company company;
+	private Company client;
 	
-	public BillingRecord() {};
-
-	public BillingRecord(Date createdOn, String description, Company company) {
-		this.createdOn = createdOn;
+	public BillingRecord() {}
+	
+	public BillingRecord(String description, Company client, User createdBy) {
+		this();
 		this.description = description;
-		//this.lineItem = inv;
-		this.company = company;
-		//this.total = total;
-		this.id = 1;
+		this.client = client;
+		this.setCreatedBy(createdBy);
 	}
 	
-	public UserLogin getCreatedBy() {
+	public abstract double getTotal();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public User getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(User user) {
-		this.createdBy = new UserLogin(user.getName(),user.getPassword());
-	}
-
-	public abstract Double getTotal();
-	
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public String getDescription() {
@@ -83,19 +73,13 @@ public abstract class BillingRecord {
 	public void setLineItem(InvoiceLineItem lineItem) {
 		this.lineItem = lineItem;
 	}
-	public Company getCompany() {
-		return company;
+
+	public Company getClient() {
+		return client;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-	public Integer getId() {
-		return id;
+	public void setClient(Company client) {
+		this.client = client;
 	}
 	
-	public void setId(Integer id) {
-		this.id = id;
-	}
 }

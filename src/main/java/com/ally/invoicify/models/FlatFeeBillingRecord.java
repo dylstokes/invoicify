@@ -1,39 +1,30 @@
 package com.ally.invoicify.models;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
-@Table(name="flatFeeBillingRecords")
-@JsonInclude(Include.NON_NULL)
 public class FlatFeeBillingRecord extends BillingRecord {
-	
-	private Double amount;
+
+	private double amount;
 	
 	public FlatFeeBillingRecord() {}
 	
-	public FlatFeeBillingRecord(Double amount, Date createdOn, String description, Company company) {
-		super(createdOn, description, company);
-		this.amount = amount; 
-	}
-
-	public Double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Double amount) {
+	public FlatFeeBillingRecord(double amount, String description,  Company client, User createdBy) {
+		super(description, client, createdBy);
 		this.amount = amount;
 	}
-
+	
 	@Override
-	public Double getTotal() {
-		// TODO Auto-generated method stub
+	public double getTotal() {
 		return amount;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
 }
