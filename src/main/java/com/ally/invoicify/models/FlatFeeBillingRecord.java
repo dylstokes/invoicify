@@ -17,8 +17,8 @@ public class FlatFeeBillingRecord extends BillingRecord {
 	
 	public FlatFeeBillingRecord() {}
 	
-	public FlatFeeBillingRecord(Double amount, Date createdOn, String description, InvoiceLineItem inv, Company company, Double total) {
-		super(createdOn, description, inv, company, total);
+	public FlatFeeBillingRecord(Double amount, Date createdOn, String description, Company company) {
+		super(createdOn, description, company);
 		this.amount = amount; 
 	}
 

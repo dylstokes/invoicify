@@ -5,6 +5,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public abstract class BillingRecord {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Column(name="createdOn")
@@ -37,18 +38,16 @@ public abstract class BillingRecord {
 	
 	@ManyToOne
 	private Company company;
-
-	@Column(name="total")
-	private Double total;
 	
 	public BillingRecord() {};
 
-	public BillingRecord(Date createdOn, String description, InvoiceLineItem inv, Company company, Double total) {
+	public BillingRecord(Date createdOn, String description, Company company) {
 		this.createdOn = createdOn;
 		this.description = description;
-		this.lineItem = inv;
+		//this.lineItem = inv;
 		this.company = company;
-		this.total = total;
+		//this.total = total;
+		this.id = 1;
 	}
 	
 	public UserLogin getCreatedBy() {

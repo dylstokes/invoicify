@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 public class Invoice {
 	
 	@Id
-    @GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
 //	@Column(name="company")
@@ -56,6 +57,7 @@ public class Invoice {
 		this.createdOn = createdOn;
 		this.company = company;
 		this.invoiceDescription = description;
+		this.id = 1;
 	}
 	
 	public int getId() {
