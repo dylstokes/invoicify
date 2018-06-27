@@ -1,43 +1,39 @@
 package com.ally.invoicify.configuration;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ally.invoicify.models.Company;
-import com.ally.invoicify.models.Invoice;
-import com.ally.invoicify.models.InvoiceLineItem;
+import com.ally.invoicify.models.FlatFeeBillingRecord;
 import com.ally.invoicify.models.RateBasedBillingRecord;
 import com.ally.invoicify.models.User;
+import com.ally.invoicify.repositories.BillingRecordRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
-import com.ally.invoicify.repositories.InvoiceRepository;
-import com.ally.invoicify.repositories.RateBasedBillingRecordRepository;
+import com.ally.invoicify.repositories.UserRepository;
 
 @Configuration
 @Profile("development")
 public class SeedData {
-	//Double rate, Double quantity, Date createdOn, String description, InvoiceLineItem inv, Company company, Double total
-	//Date createdOn, Invoice inv
-	//Date createdOn, String description, Company company
-	public SeedData(CompanyRepository companyRepo, RateBasedBillingRecordRepository ratebasedRepo, InvoiceRepository invoiceRepo) {
-		Company c = new Company("Ally");
-		companyRepo.save(c);
-		Invoice i = new Invoice(new Date(2010,3,4),"",c);
-		User u = new User("megan","megan");
-		//InvoiceLineItem ili = new InvoiceLineItem(new Date(2010,3,4),i);
-//		RateBasedBillingRecord r = new RateBasedBillingRecord(2.0,2.0,new Date(2010,3,4),"",c);
-		RateBasedBillingRecord r = new RateBasedBillingRecord();
-		r.setRate(.5);
-		r.setQuantity(10);
-		r.setDescription("Test rate based billing record descrip.");
-		r.setClient(c);
-		
-		InvoiceLineItem ili = new InvoiceLineItem(new Date(2010,3,4),i);
-		invoiceRepo.save(i);
-		ratebasedRepo.save(r);
-		
-		
+
+	public SeedData(BillingRecordRepository recordRepository, CompanyRepository companyRepository,
+			UserRepository userRepository, PasswordEncoder encoder) {
+		User admin = userRepository.save(new User("admin", encoder.encode("admin")));
+
+		Company ajax = companyRepository.save(new Company("AJAX Ltd."));
+		Company lomax = companyRepository.save(new Company("Lomax Brothers, LLC"));
+
+		recordRepository.save(new FlatFeeBillingRecord(300, "Faxes", ajax, admin));
+		recordRepository.save(new FlatFeeBillingRecord(1.75, "Socks", ajax, admin));
+		recordRepository.save(new FlatFeeBillingRecord(500, "Paper", lomax, admin));
+		recordRepository.save(new FlatFeeBillingRecord(72.33, "Stockings", lomax, admin));
+		recordRepository.save(new FlatFeeBillingRecord(142.99, "Paint", lomax, admin));
+
+		recordRepository.save(new RateBasedBillingRecord(500, 3.5, "Legal services", ajax, admin));
+		recordRepository.save(new RateBasedBillingRecord(150, 2.5, "Painting", ajax, admin));
+		recordRepository.save(new RateBasedBillingRecord(100, 4.25, "House cleaning", ajax, admin));
+		recordRepository.save(new RateBasedBillingRecord(700, 8, "Palm reading", lomax, admin));
+		recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
 	}
+
 }
