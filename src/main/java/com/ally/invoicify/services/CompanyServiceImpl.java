@@ -35,8 +35,8 @@ public class CompanyServiceImpl {
 		repo.delete(id);
 		return record != null;
 	}
-	
-	public Company update(Company company, Integer id) {
+
+	public Company update(Company company, int id) {
 		company.setId(id);
 		return company;
 	}

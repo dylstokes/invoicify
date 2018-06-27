@@ -2,45 +2,56 @@ package com.ally.invoicify.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="companies")
 public class Company {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	
-	@Column(name="company")
+
+	@Column(length=255)
 	private String name;
 	
-	@OneToMany(mappedBy="company", cascade=CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy="company")
 	private List<Invoice> invoices;
 	
 	public Company() {}
 	
 	public Company(String name) {
 		this.name = name;
-		this.id = 1;
 	}
-	
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setId(Integer id2) {
+		this.id = id2;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<Invoice> getInvoices() {
+		return invoices;
+	}
+
+	public void setInvoices(List<Invoice> invoices) {
+		this.invoices = invoices;
+	}
+	
 }
