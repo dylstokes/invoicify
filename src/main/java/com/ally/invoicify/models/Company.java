@@ -3,6 +3,7 @@ package com.ally.invoicify.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,7 +11,7 @@ import javax.persistence.Table;
 @Table(name="companies")
 public class Company {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
 	@Column(name="company")
@@ -18,6 +19,11 @@ public class Company {
 //	private List<Invoice> invoices;
 	
 	public Company() {}
+	
+	public Company(String name) {
+		this.name = name;
+		this.id = 1;
+	}
 	
 	public int getId() {
 		return id;

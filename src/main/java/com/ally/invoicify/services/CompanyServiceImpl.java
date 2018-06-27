@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ally.invoicify.models.BillingRecord;
 import com.ally.invoicify.models.Company;
 import com.ally.invoicify.repositories.CompanyRepository;
 
@@ -18,8 +17,9 @@ public class CompanyServiceImpl {
 		this.repo = repo;
 	}
 	
-	public Company create(Company company) {
-		return repo.save(company);
+	public Company create(String company) {
+		Company c = new Company(company);
+		return repo.save(c);
 	}
 	
 	public Company get(Integer id) {
