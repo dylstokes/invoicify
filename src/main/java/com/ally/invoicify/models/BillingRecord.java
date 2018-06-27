@@ -58,10 +58,6 @@ public abstract class BillingRecord {
 		this.createdBy = new UserLogin(user.getName(),user.getPassword());
 	}
 
-	public void setTotal(Double total) {
-		this.total = total;
-	}
-
 	public abstract Double getTotal();
 	
 	public Date getCreatedOn() {
